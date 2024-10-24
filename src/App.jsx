@@ -45,6 +45,23 @@ function App() {
       setInput3('')
     }
   }
+
+  function button() {
+    if (!input1) {
+      alert("please enter a loan amount")
+    } else if (!input2) {
+      alert("please enter your annual salary")
+    } else if (!input3) {
+      alert("please enter a percentage")
+    } else if(submitted) {
+      setInput1('')
+      setInput2('')
+      setInput3('')
+      setSubmitted(!submitted)
+    } else {
+      setSubmitted(!submitted)
+    }
+  }
   
   function renderContent() {
     if(!submitted) {
@@ -111,7 +128,7 @@ function App() {
         <div className='grow flex flex-col justify-evenly'>
           {renderContent()}
         </div>
-        <button onClick={() => {setSubmitted(!submitted)}} className='w-full p-2 bg-gray-200 rounded-md text-gray-500 text-xl'>{!submitted ? 'SUBMIT' : 'RESET'}</button>
+        <button onClick={button} className='w-full p-2 bg-gray-200 rounded-md text-gray-500 text-xl'>{!submitted ? 'SUBMIT' : 'RESET'}</button>
       </div>
     </div>
    )
