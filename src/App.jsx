@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Input from './components/input'
 
 function App() {
 
@@ -67,32 +68,10 @@ function App() {
     if(!submitted) {
       return (
         <>
-        <div className='flex w-full justify-between'>
-            <p className='p-2 self-center'>LOAN AMOUNT</p>
-            <div className='border-2 flex w-1/2'>
-              <p className='bg-gray-200 p-2'>£</p>
-              <input type="number" className='w-full p-2' onChange={handleChange1} value={input1} placeholder='0'/>
-              <p className='bg-gray-200 p-2'>.00</p>
-            </div>
-          </div>
-
-          <div className='flex w-full justify-between'>
-            <p className='p-2 self-center'>ANNUAL INCOME</p>
-            <div className='border-2 flex w-1/2'>
-              <p className='bg-gray-200 p-2'>£</p>
-              <input type="number" className='w-full p-2' onChange={handleChange2} value={input2} placeholder='0'/>
-              <p className='bg-gray-200 p-2'>.00</p>
-            </div>
-          </div>
-
-          <div className='flex w-full justify-between'>
-            <p className='p-2 self-center'>MONTH REPAYMENT</p>
-            <div className='border-2 flex w-1/2'>
-              <input type="number" className='w-full p-2' onChange={handleChange3} value={input3} placeholder='0'/>
-              <p className='bg-gray-200 p-2'>%</p>
-            </div>
-          </div>
-          </>
+          <Input changeHandler={handleChange1} text={'LOAN AMOUNT'} value={input1}></Input>
+          <Input changeHandler={handleChange2} text={'ANNUAL SALARY'} value={input2}></Input>
+          <Input changeHandler={handleChange3} text={'MONTH REPAYMENT'} value={input3}></Input>
+        </>
       )
     } else {
       let loan = Number(input1);
@@ -102,7 +81,7 @@ function App() {
       let salary = Number(input2);
       let percentage = input3;
       let monthsToPay = Math.ceil(total / (salary * percentage / 100 / 12))
-      let finalPayment = (total % (salary * percentage / 100 / 12)).toFixed(2)
+      let finalPayment = (total % (salary * percentage / 100 / 12).toFixed(2)).toFixed(2)
       return (
         <>
         <p>borrow-amount: <span className='font-bold'>£{loan.toFixed(2)}</span></p>
